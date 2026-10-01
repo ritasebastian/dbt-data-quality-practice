@@ -1,0 +1,5 @@
+customer_id,first_name,last_name,email,customer_tier,updated_at
+C001,John,Smith,john@example.com,gold,2026-09-30 09:00:00
+C002,Mary,Jones,mary@example.com,silver,2026-09-30 09:05:00
+C003,David,Lee,david@example.com,bronze,2026-09-30 09:10:00
+C004,Sarah,Patel,,silver,2026-09-30 09:15:00

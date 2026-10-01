@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension used by downstream reporting."
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_tier
+        description: "Customer loyalty tier."
+        data_tests:
+          - accepted_values:
+              values: ['bronze', 'silver', 'gold']
+
+  - name: fct_orders
+    description: "Order fact table containing valid non-cancelled orders."
+    columns:
+      - name: order_id
+        description: "Unique order identifier."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Customer associated with the order."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+
+      - name: quantity
+        description: "Number of units ordered."
+        data_tests:
+          - not_null
+
+      - name: order_amount
+        description: "quantity multiplied by unit_price."
+        data_tests:
+          - not_null
